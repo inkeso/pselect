@@ -1,0 +1,12 @@
+# Do not track objectfiles
+*.pyc
+
+# youtube-dl can be obtained from https://rg3.github.io/youtube-dl/ (and may be decompressed for speed)
+# or through your favorite package-manager
+YTDL
+youtube-dl
+
+# other unwanted local stuff
+old_mods
+videos/bsto.favorites
+videos/.pvidcache

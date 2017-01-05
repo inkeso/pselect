@@ -1,0 +1,8 @@
+# This file contains external scripts for pselect
+# displayed name, a tab-character and a programname or shellcommand per line
+# lines starting with # will be ignored.
+# Everything after the tab-char is sent to the shell unchecked,
+# so be careful
+
+MediathekView	/opt/Mediathekview/MediathekView__Linux.sh
+MiniTube	minitube

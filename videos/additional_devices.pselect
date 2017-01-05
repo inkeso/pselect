@@ -1,0 +1,13 @@
+# This file contains additional devices and mountpoints for pselect
+# lines starting with # will be ignored.
+# All other lines should contain 3 Fields, separated by one tab:
+# Displayed Name	mountcommand	unmountcommand
+# 
+# mountcommand and unmountcommand are executed via shell unchecked, so be careful.
+# the mountpoint should be somewhere in the main basedir
+#
+# Example:
+# (instead of "gksu" you can also use "xterm -e sudo")
+
+SDC1 as root	gksu mount /dev/sdc1 /mnt/media/SDC1	gksu umount /dev/sdc1
+
