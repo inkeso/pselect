@@ -8,7 +8,7 @@ class ProgressBar:
     First parameter 'max' is needed and should be set to the highest value
     of the counter in the main-loop.
     The second and third and fith parameter are ignored (just kept to remain compatible 
-    with the terminal-progressbar.
+    with the terminal-progressbar).
     With fourth parameter, the progressbar can be turned into a working-indicator
     when you don't know how many iterations your long-lasting-operation take.
     this can be set to true or to an integer specifying the width of the pulsating block
@@ -36,6 +36,7 @@ class ProgressBar:
         self.win.show_all()
         if pulse and type(pulse) == int:
             self.pbar.set_pulse_step(pulse/100.0)
+        while gtk.events_pending(): gtk.main_iteration()
         
     def reset(self):
         self.pbar.set_fraction(0.0)

@@ -22,6 +22,14 @@
 #  
 
 import os, sys, subprocess, time, re, cPickle, select, random, fractions
+
+try:
+    import scandir
+    SCANDIR = True
+except:
+    SCANDIR = False
+    print "Consider \"pip install scandir\" since it is way faster than os.listdir"
+
 import progressbar
 #from pprint import pprint
 
@@ -362,16 +370,19 @@ class Videos():
         }, ...]
         vLen will be filled from cache only here. Files missing in cache get -1.
         '''
-        dl = os.listdir(sDir)
+        
+        dl = scandir.scandir(sDir) if SCANDIR else os.listdir(sDir)
+        # do not update progressbar: since reading filetree is fast (especially
+        # with scandir) gtk-update may be significant overhead.
+        # self.pb.updateprogressbar(0,sDir)
         dirs=[]
         files=[]
-        if self.pb: self.pb.updateprogressbar(0,sDir)
-        for fnam in dl:
+        for fentry in dl:
+            fnam = fentry.name if SCANDIR else fentry
             if fnam[0] == '.': continue         # ignore hidden files
             if fnam == 'lost+found': continue   # ignore journal
             nKey = os.path.join(sDir, fnam)
-            fStat = os.stat(nKey)
-            fTime = fStat.st_mtime 
+            fStat = fentry.stat() if SCANDIR else os.stat(nKey)
             # time.strftime('%d %b %Y %H:%M', time.gmtime(fTime))
             if fStat.st_mode & 2**14: # is dir
                 dirs.append({
@@ -379,7 +390,7 @@ class Videos():
                     'fileName': fnam,
                     'items': [],
                     'size': 0, 
-                    'mTime': fTime,
+                    'mTime': fStat.st_mtime,
                     'vLen': 0})
             elif self.rex.search(fnam): # is video
                 if filefilter and filefilter not in fnam: continue
@@ -396,7 +407,7 @@ class Videos():
                     'fileName': fnam,
                     #'items': [],
                     'size': fStat.st_size, 
-                    'mTime': fTime,
+                    'mTime': fStat.st_mtime,
                     'vLen': vlen,
                     'dim': dim,
                     'aCh': ach})
