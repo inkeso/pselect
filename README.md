@@ -20,7 +20,7 @@ It now reads metadata using whatever tool is available (see below) and it has a 
     - Execute other programs (see `plugins/shexec.py`, `videos/external_scripts.pselect`)
     - play streams from bs.to, serienstreams.to, kinox.to
         - can decode some streamhosters itself
-        - some others by using [youtube-dl] (check `plugins/libs/streamhoster.py`)
+        - some others by using [youtube-dl] \(check `plugins/libs/streamhoster.py`\)
         - for series: remember last watched episode
         - bookmark your favorite series
 - Only tested on linux, should be portable to OSX. Windows may be a bit difficult.
