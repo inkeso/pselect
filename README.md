@@ -31,7 +31,7 @@ TODO. (please send your screenshots!)
 ## Installation / Configuration
 You need python 2.7 (i think 2.6 will also work, but didn't test it), pygtk and pywebkitgtk. You need to find the corresponding packages of your distribution.
 download / clone this repo somewhere.
-If you want to use [youtube-dl] (to decode some more streamhosters within *kinox* or *bsto'), download the binary and place it in this directory.
+If you want to use [youtube-dl] \(to decode some more streamhosters within *kinox* or *bsto'\), download the binary and place it in this directory.
 Or install it via your package-manager.
 On slow machines (such as the RasPi) it is beneficial to extract the binary (yes, you read that right, `7z x youtube-dl ; mv __main__.py youtube-dl`).
 
