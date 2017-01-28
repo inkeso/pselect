@@ -87,12 +87,12 @@ Apart from this README there is no documentation, you have to look through the s
 This piece of software relies on several 3rd party-libs and programs: 
 - python (2.x (I only tested it with 2.7))
 - pygtk
-- webkit2
-- [odict] (bundled → `plugins/libs/odict.py`)
-- [beautifulsoup] (bundled →`plugins/libs/bs4`)
-- [youtube-dl] (optional, just put the single, executable file `youtube-dl` in the same directory as this program)
+- webkit2 & pywebkitgtk
+- [odict] \(bundled → `plugins/libs/odict.py`\)
+- [beautifulsoup] \(bundled →`plugins/libs/bs4`\)
+- [youtube-dl] \(optional, just put the single, executable file `youtube-dl` in the same directory as this program\)
 - [mplayer] OR [mpv] OR [omxplayer]
-- [mediainfo] (optional)
+- [mediainfo] \(optional\)
 
 
 [mplayer]: http://www.mplayerhq.hu
@@ -102,3 +102,4 @@ This piece of software relies on several 3rd party-libs and programs:
 [exiftool]: http://www.sno.phy.queensu.ca/~phil/exiftool/
 [youtube-dl]: https://rg3.github.io/youtube-dl/
 [odict]: http://www.voidspace.org.uk/python/odict.html
+[beautifulsoup]: https://www.crummy.com/software/BeautifulSoup/
