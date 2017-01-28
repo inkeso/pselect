@@ -169,7 +169,7 @@ class Burningseries(Streamsite):
         return soup.find("div", id="sp_left").div.p.string
     
     def _seasonList(self, soup):
-        return soup.find("ul", "pages").findChildren("a")[:-1]
+        return soup.find("ul", "clearfix").findChildren("a")[:-1]
     
     def _seasonTitle(self, soup):
         return "Season "+soup.string
