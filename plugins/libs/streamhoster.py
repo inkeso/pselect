@@ -80,7 +80,6 @@ def simpleStreamhost(url, output, okbutton, waittime, filere, bonusformfields=[]
     return findurl.group(1)
 
 def getYtdl():
-    return False
     """check whether youtube-dl is bundled or installed and return its full path"""
     # try same directory (bundled)
     ytdl = os.path.join(sys.path[0],"youtube-dl") 

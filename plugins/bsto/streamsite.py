@@ -169,7 +169,7 @@ class Burningseries(Streamsite):
         return soup.find("div", id="sp_left").div.p.string
     
     def _seasonList(self, soup):
-        return soup.find("ul", "clearfix").findChildren("a")[:-1]
+        return soup.find("ul", "clearfix").findChildren("a")
     
     def _seasonTitle(self, soup):
         return "Season "+soup.string
@@ -180,7 +180,7 @@ class Burningseries(Streamsite):
         return soup.find("td").string+" "+title.string
     
     def _episodesList(self, soup):
-        return soup.find("table").findAll("tr")[1:]
+        return soup.find("table").findAll("tr")
     
     def _episodesValue(self, soup):
         slnk = OD()
@@ -214,13 +214,12 @@ class Burningseries(Streamsite):
         for mir in tryhost:
             output("Loading %s from %s" % (" - ".join(serpath), mir))
             soup = self.supper(mirs[mir])
-            links = [l.get("href") for l in soup.findAll("a", target="_blank") if l.text.find("Originalvideo") > -1]
-            for link in links:
-                output("fetching stream from %s" % link)
-                # one redirect
-                link = redirected(link)
-                streamurl = streamhoster.findParser(link, output)
-                if streamurl is not None: return streamurl
+            link = soup.find("a", target="_blank").get("href")
+            output("fetching stream from %s" % link)
+            # one redirect
+            link = redirected(link)
+            streamurl = streamhoster.findParser(link, output)
+            if streamurl is not None: return streamurl
         output("No suitable stream found")
         return None
 
@@ -435,7 +434,7 @@ class Metastream(Streamsite):
 def example():
     # from plugins.bsto.streamsite import *
     
-    bs = Serienstream()
+    bs = Burningseries()
     xx = (u'Scrubs - Die Anf\xe4nger', u'Season 1', u'9 Mein freier Tag')
     sea, epi = bs.getSeasons(xx[0]), bs.getEpisodes(xx[0], xx[1])
     lnks = bs.getMirrors(xx)
