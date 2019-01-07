@@ -12,7 +12,7 @@ os.environ["GTK2_RC_FILES"]=os.path.join(sys.path[0],"gtkrc/gtk_dark_large_ambia
 
 import gtkgui
 
-plugins = ("pregui", "bsto", "c3tv", "kinox")
+plugins = ("pregui", "c3tv")
 
 def oninit(app): # customize gui befor it is drawn
     app.win.set_decorated(False)

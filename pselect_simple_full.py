@@ -7,7 +7,7 @@
 
 import os, sys, gtkgui
 
-plugins = ('clocky', 'bsto', 'kinox', 'c3tv', 'shexec')
+plugins = ('clocky', 'c3tv', 'shexec')
 
 app = gtkgui.MainWindow("videos", plugs=plugins, clearcache=False)
 app.win.maximize()
@@ -18,7 +18,7 @@ app.pltab_t.remove(app.playlists[1].widget)
 app.pltab.remove(app.pltab_b)
 
 app.parameters = "-fs"
-app.player = "mplayer"
+app.player = "mpv"
 
 # Start!
 gtkgui.gtk.main()

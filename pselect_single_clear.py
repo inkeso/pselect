@@ -13,7 +13,7 @@ os.environ["GTK2_RC_FILES"]=os.path.join(sys.path[0],"gtkrc/gtk_dark_large_ambia
 import gtkgui
 
 # (pre)configure plugins
-plugins = ('clocky', 'playlisthide', 'pregui', 'mountdev', 'bsto', 'kinox', 'c3tv', 'shexec')
+plugins = ('clocky', 'playlisthide', 'pregui', 'mountdev', 'c3tv', 'shexec')
 gtkgui.plugins.clocky.DoInstant = True
 gtkgui.plugins.playlisthide.OffsetOn  = 1040
 gtkgui.plugins.playlisthide.OffsetOff = 1920

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import gtk, gobject, webkit, threading
-from ..bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 class Scraper():
     def __init__(self):
@@ -20,7 +20,7 @@ class Scraper():
                 self._wait = False
 
     def beautifulthread(self, html):
-        self._html = BeautifulSoup(preprocess(html))
+        self._html = BeautifulSoup(preprocess(html), "html.parser")
         # emit a gtk-event when finished (and unset wait-flag for wrapper self.supper)
         self.broz.emit("realize")
         self._wait = False

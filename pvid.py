@@ -381,7 +381,7 @@ class Videos():
             fnam = fentry.name if SCANDIR else fentry
             if fnam[0] == '.': continue         # ignore hidden files
             if fnam == 'lost+found': continue   # ignore journal
-            nKey = os.path.join(sDir, fnam)
+            nKey = fentry.path if SCANDIR else os.path.join(sDir, fnam)
             fStat = fentry.stat() if SCANDIR else os.stat(nKey)
             # time.strftime('%d %b %Y %H:%M', time.gmtime(fTime))
             if fStat.st_mode & 2**14: # is dir

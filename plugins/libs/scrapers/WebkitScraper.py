@@ -7,7 +7,7 @@ if 'DISPLAY' in os.environ and os.environ['DISPLAY']:
 else:
     raise Exception("WebkitScraper needs a running X-Server")
 
-from ..bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from ..scrapers import preprocess
 
 class Scraper():
@@ -20,7 +20,7 @@ class Scraper():
         data = frame.get_data_source().get_data()
         if data is not None:
             if not "banhammer" in data and len(data) > 5000:
-                self._html = BeautifulSoup(preprocess(data))
+                self._html = BeautifulSoup(preprocess(data), "html.parser")
                 self._wait = False
 
     def supper(self, url):

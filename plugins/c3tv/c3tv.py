@@ -225,16 +225,19 @@ class CccTree():
                 dlgbox.launch()
             else:
                 # prefer mp4 full-hd if available...
-                candi = filter(lambda k: "mp4" in k and "full-hd" in k, i.keys())
+                candi = filter(lambda k: "mp4" in k and "-hd" in k, i.keys())
                 if len(candi) < 1: candi = filter(lambda k: "mp4" in k, i.keys())
-                if len(candi) < 1: candi = k
+                if len(candi) < 1: candi = i.values()
                 # ...and with the most languages
-                mostlangs, vidurl = 0, ""
+                mostlangs, vidurl = 0, candi[0]
                 for k in candi:
-                    langs = len(k.split()[2].split("-"))
-                    if langs > mostlangs:
-                        mostlangs = langs
-                        vidurl = i[k]
+                    try:
+                        langs = len(k.split()[2].split("-"))
+                        if langs > mostlangs:
+                            mostlangs = langs
+                            vidurl = i[k]
+                    except:
+                        continue
                 self.playback(vidurl)
         else:
             hasChilds = tstor.iter_has_child(citer)

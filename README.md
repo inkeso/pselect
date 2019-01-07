@@ -29,11 +29,13 @@ It now reads metadata using whatever tool is available (see below) and it has a 
 TODO. (please send your screenshots!)
 
 ## Installation / Configuration
-You need python 2.7 (i think 2.6 will also work, but didn't test it), pygtk and pywebkitgtk. You need to find the corresponding packages of your distribution.
-download / clone this repo somewhere.
-If you want to use [youtube-dl] \(to decode some more streamhosters within *kinox* or *bsto'\), download the binary and place it in this directory.
-Or install it via your package-manager.
-On slow machines (such as the RasPi) it is beneficial to extract the binary (yes, you read that right, `7z x youtube-dl ; mv __main__.py youtube-dl`).
+- You need python 2.7 (i think 2.6 will also work, but didn't test it)
+- pygtk and pywebkitgtk (find the corresponding packages of your distribution)
+- Probably also python2-scandir for faster startup (scaning file tree)
+- You _should_ have a font with emojis (like ttf-symbola or ttf-ancient-fonts) otherwise *c3tv* my look a bit weird.
+- Download / clone this repo somewhere.
+- If you want to use [youtube-dl] (to decode some more streamhosters within *kinox* or *bsto'), download the binary and place it in this directory or install it via your package-manager.
+- On slow machines (such as the RasPi) it is beneficial to extract the binary (yes, you read that right, `7z x youtube-dl ; mv __main__.py youtube-dl`).
 
 There is no way to configure anything within the GUI. Configuration / customization is done via editing the code. So check / copy / edit one of the startup-files:
 
@@ -60,23 +62,29 @@ Meh, you'll figure it out yourself. But here are keyboard-shortcuts (you may cha
 
 key | function
 --- | ---
-`1` | Add complete to PL 1
-`2` | Add snippet to PL 1
-`3` | Focus PL 1
-`4`,`5`,`6` | same for PL 2
-`7`,`8`,`9` | for PL 3
-`*`,`0`,`#` | for PL 4
-`Del` | remove currently highlighted video from active playlist (see below)
-`F10` | Play all playlists / Execute special action from plugin
+`↓`,`↑` | Move cursor
+`Return` | Expand/collapse folder or Play selected Item
 `F9`  | Focus main filelist
-`Return` | Play selected Item
+`F10` | Play all playlists / Execute special action from plugin
 `Esc` | Quit
 
-The special action for the three stream-plugins (*c3tv*, *bsto*, *kinox*):
+Playlists only work for local files, not for streams:
+
+key | function
+--- | ---
+`1` | Add complete video to playlist 1
+`2` | Add snippet (up to 3 min) to playlist 1 if cursor is on a file. If it's on a folder, select random files from it, until the playlist is 30 minutes longer. (You may adjust those values in the last function in `gtkgui.py`)
+`3` | Focus playlist 1
+`4`,`5`,`6` | same for playlist 2
+`7`,`8`,`9` | same for playlist 3
+`*`,`0`,`#` | same for playlist 4
+`Del` | remove currently highlighted video from active playlist
+
+The special action (`F10`) for the three stream-plugins (*c3tv*, *bsto*, *kinox*):
 If the cursor is on a stream (and not on a folder) a mirror selection dialog will pop up.
 
-For *bsto* only: if the cursor is on a series-folder, F10 will add that series to your favorites (or removes it, if it already is present)
-This will also work from the favorites folder (obviously only for removing)
+For *bsto* only: if the cursor is on a series-folder, `F10` will add that series to your favorites (or removes it, if it already is present), this will also work from the favorites folder (obviously only for removing).
+
 The plugin will save the last viewed episode for each series and overall.
 If you open a series-folder the first time (per session) and have already watched an episode, the cursor will jump to the corresponding position.
 
@@ -85,21 +93,22 @@ If you open a series-folder the first time (per session) and have already watche
 Again, this was never intended to be userfriendly. You almost always have to read / modify code to make it do want you want.
 Apart from this README there is no documentation, you have to look through the source (which is not that much).
 This piece of software relies on several 3rd party-libs and programs: 
-- python (2.x (I only tested it with 2.7))
+- python 2
 - pygtk
-- webkit2 & pywebkitgtk
-- [odict] \(bundled → `plugins/libs/odict.py`\)
-- [beautifulsoup] \(bundled →`plugins/libs/bs4`\)
-- [youtube-dl] \(optional, just put the single, executable file `youtube-dl` in the same directory as this program\)
+- webkit2
+- [odict] _(version 0.2.2 bundled → `plugins/libs/odict.py`)_
+- [beautifulsoup]
+- [scandir] _(optional for faster file-scan)_
+- [youtube-dl] _(optional)_
 - [mplayer] OR [mpv] OR [omxplayer]
-- [mediainfo] \(optional\)
+- [mediainfo] _(optional)_
 
-
-[mplayer]: http://www.mplayerhq.hu
-[omxplayer]: http://elinux.org/Omxplayer
-[mpv]: https://github.com/mpv-player/mpv
-[mediainfo]: https://mediaarea.net/en/MediaInfo
-[exiftool]: http://www.sno.phy.queensu.ca/~phil/exiftool/
-[youtube-dl]: https://rg3.github.io/youtube-dl/
-[odict]: http://www.voidspace.org.uk/python/odict.html
 [beautifulsoup]: https://www.crummy.com/software/BeautifulSoup/
+[scandir]: https://github.com/benhoyt/scandir
+[exiftool]: http://www.sno.phy.queensu.ca/~phil/exiftool/
+[mediainfo]: https://mediaarea.net/en/MediaInfo
+[mplayer]: http://www.mplayerhq.hu
+[mpv]: https://github.com/mpv-player/mpv
+[odict]: http://www.voidspace.org.uk/python/odict.html
+[omxplayer]: http://elinux.org/Omxplayer
+[youtube-dl]: https://rg3.github.io/youtube-dl/

@@ -14,7 +14,7 @@ os.environ["GTK2_RC_FILES"]=os.path.join(sys.path[0],"gtkrc/gtk_dark_large_ambia
 
 import gtkgui
 
-plugins = ('pregui', 'mountdev', 'bsto', 'kinox', 'c3tv')
+plugins = ('pregui', 'mountdev', 'c3tv')
 
 def plreplace(app):
     # remove quitbutton etc.

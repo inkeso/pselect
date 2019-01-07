@@ -342,7 +342,7 @@ class MainWindow():
         if handler: handler(self)
     
     def playall(self):
-        PRX = "/tmp/pselect."
+        PRX = "/tmp/pselect.%d." % os.getpid()
         plfiles = [self.playlists[i].playlist.writeplaylist(PRX+"%d" % (i+1), player=self.player) for i in range(4)]
         pvid.multiplay(plfiles, PRX+"master", start=False)
         with open(PRX+"master", 'a') as f:
@@ -357,7 +357,7 @@ class MainWindow():
         if self.exitcheckbox.get_active(): gtk.main_quit()
     
     def filterchanged(self, void):
-        """TODO: Filtern macht den treeview kaputt. Außerdem kannd as ruhig in ein Plugin"""
+        """TODO: Filtern macht den treeview kaputt. Außerdem kann das ruhig in ein Plugin"""
         txt = self.filterentry.get_text().upper()
         if len(txt) > 2:
             self.treestore.clear()
@@ -365,14 +365,14 @@ class MainWindow():
             # {"full/path/to.avi" : {'ID_LENGTH': 1220.0, 'ID_VIDEO_WIDTH': 320, ...}
             for n in nuc:
                 #("File", "Duration", "Resolution", "NA", "Size", "Date", "fullPath", "PluginRowActivate", "PluginRowHover")
-
-                piter = self.treestore.append(None, [
+                piter = self.treestore.prepend(None, [
                     n[len(self.prefix)+1:],
                     pvid.sec2hms(self.videos.cache[n]["ID_LENGTH"]),
                     "%d x %d" % (self.videos.cache[n]["ID_VIDEO_WIDTH"],self.videos.cache[n]["ID_VIDEO_HEIGHT"]),
                     "%d" % self.videos.cache[n]["ID_AUDIO_NCH"],
-                    "", "", n, None, None
+                    "","", n, self.playlocal, self.hoverlocal
                 ])
+
             self.filterframe.set_label("Filter (%d files)" % len(nuc))
             self.isfiltered = True
         else:

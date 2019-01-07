@@ -44,7 +44,7 @@ HosterRank = ("30", "56", "45", "58", "52", "65",     # simple
 
 import urllib
 
-from ..libs.bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from ..libs import streamhoster
 
 
@@ -70,7 +70,7 @@ class Kinox():
         http = self.broz.open(self.URL + url)
         page = http.read()
         http.close()
-        return(BeautifulSoup(page))
+        return(BeautifulSoup(page, "html.parser"))
     
     def search(self, word):
         """
@@ -112,7 +112,7 @@ class Kinox():
         (OnErrorResumeNext? ;P)
         """
         soup = self.supper("Stream/"+vidid+".html")
-        desc = BeautifulSoup()
+        desc = BeautifulSoup("", "html.parser")
         try:    desc.append(soup.find("div", "ModuleHead").find("h1"))
         except: pass
         try:    desc.append(soup.find("div", "Grahpics")) # yes. Grahpics.

@@ -3,7 +3,7 @@
 
 import urllib
 
-from ..libs.bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 VIDEOTEMPLATE = """
 <html><head><body>
@@ -17,7 +17,7 @@ def supper(url):
     http = urllib.urlopen(url)
     page = http.read()
     http.close()
-    return(BeautifulSoup(page))# , "html.parser"))
+    return BeautifulSoup(page, "html.parser")
 
 def getItem(root="/b/"):
     idx = supper("https://media.ccc.de"+root)
@@ -26,9 +26,10 @@ def getItem(root="/b/"):
     video = []
     
     for fldr in idx.find_all("a", "thumbnail"):
-        cap = fldr.find_all("div", "caption")[0].string.strip()
+        cap = fldr.find_all("div", "caption")
+        if len(cap) == 0: continue
         lnk = fldr.get("href")
-        folders.append([cap, lnk])
+        folders.append([cap[0].string.strip(), lnk])
     
     for item in idx.find_all("div", "event-preview"):
         cap = item.h3.a.string.strip()

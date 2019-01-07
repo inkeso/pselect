@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# cleanup
+
+rm videos/.pvidcache
+find . -name "*.pyc" -delete
+
+tar czf pselect.tar.gz gtkrc plugins videos *_standalone.py pselect_*.py pvid.py gtkgui.py progressbar.py LICENCE TODO* README* .gitignore youtube-dl

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import urllib2, re
-from ..bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from ..scrapers import preprocess
 
 class Scraper():
@@ -13,4 +13,4 @@ class Scraper():
         nurl = response.geturl()
         content = response.read()
         response.close()
-        return BeautifulSoup(preprocess(content))
+        return BeautifulSoup(preprocess(content), "html.parser")
